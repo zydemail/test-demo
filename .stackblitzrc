@@ -1,0 +1,5 @@
+
+  {
+    "installDependencies": false,
+    "startCommand": "yarn install && yarn dev"
+  }

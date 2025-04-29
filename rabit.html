@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>龟兔赛跑</title>
+    <style>
+#map{
+	width: 800px;
+	height: 400px;
+	position: absolute;
+	/*background-image: url(../img/timg.jpg);*/
+	left: 200px;
+	top: 100px;
+	border: solid 1px #90EE90;
+	text-align: center;
+	
+}
+
+img{
+	display: none;
+	position: absolute;
+	width: 42px;
+	height: 42px;
+}
+
+#result{
+	font-size: 20px;
+	font-family: "微软雅黑";
+	
+	margin-top: 50px;
+	margin-left: 550px;
+	display: none;
+}
+
+
+    </style>
+    <script>
+        var timeobj=-1;
+function start(){
+	if(timeobj!=-1){
+		
+		clearInterval(timeobj)
+	}
+	
+	
+	t = document.getElementById("t")
+	r = document.getElementById("r")
+	result = document.getElementById("result")
+
+	
+	t.style.left = '200px';
+	t.style.top = '200px';
+	
+	
+	
+	r.style.left = '200px';
+	r.style.top = '300px';
+	
+	t.style.display = 'block'
+	r.style.display = 'block'
+	result.style.display = "none"
+	
+	timeobj=setInterval(move,100)
+	
+}
+function move(){
+	t = document.getElementById("t")
+	r = document.getElementById("r")
+
+	
+	rleft = r.style.left
+	tleft = t.style.left
+	
+	rleft = Number.parseInt(rleft.split('px')[0])
+	tleft = Number.parseInt(tleft.split('px')[0])
+	
+	rleft +=10
+	tleft +=5
+	
+	t.style.left = tleft+'px';
+	
+	r.style.left = rleft+'px';
+	
+	if(rleft>=960 | tleft>=960){
+		clearInterval(timeobj)
+		timeobj = -1
+		result.style.display = "block"		
+	}
+}
+
+
+    </script>
+</head>
+<body> 
+	
+    <div id="map">
+        <input type="button" value="开始" onclick="start()"/>    
+    </div>
+    
+    <img id="t" src="img/gui.gif" />
+    <img id="r" src="img/tus.gif"/>
+    
+    <div id="result">
+        兔子赢了
+    </div>
+    
+</body>
+</html>
